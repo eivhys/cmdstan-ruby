@@ -71,5 +71,5 @@ system 'tar', 'zxf', download_path, '-C', path, '--strip-components=1', *tar_arg
 
 # build
 make_command = Gem.win_platform? ? 'mingw32-make' : 'make'
-success = system(make_command, 'build', '-i')
+success = system(make_command, 'build', *ENV.fetch('CMDSTAN_RUBY_BUILD_FLAGS', []))
 raise 'Build failed' unless success
